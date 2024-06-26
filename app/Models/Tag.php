@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Employer extends Model
+class Tag extends Model
 {
   use HasFactory;
 
   protected $fillable = ['name'];
 
-  public function jobs(): HasMany
+  public function jobs(): BelongsToMany
   {
-    return $this->hasMany(JobListing::class);
+    return $this->belongsToMany(JobListing::class);
   }
 }
