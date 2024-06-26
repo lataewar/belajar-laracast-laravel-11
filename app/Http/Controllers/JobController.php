@@ -4,33 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\JobListing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   */
+  // INDEX
   public function index()
   {
     return view('job.index', [
-      // 'jobs' => JobListing::all()
       'jobs' => JobListing::with('employer')->latest()->paginate(5)
       // 'jobs' => JobListing::with('employer')->simplePaginate(5)
       // 'jobs' => JobListing::with('employer')->cursorPaginate(5)
     ]);
   }
 
-  /**
-   * Show the form for creating a new resource.
-   */
+  // CREATE
   public function create()
   {
     return view('job.create');
   }
 
-  /**
-   * Store a newly created resource in storage.
-   */
+  // STORE
   public function store(Request $request)
   {
     $request->validate([
@@ -47,25 +41,27 @@ class JobController extends Controller
     return redirect('/jobs');
   }
 
-  /**
-   * Display the specified resource.
-   */
+  // STORE
   public function show(JobListing $job)
   {
     return view('job.show', ['job' => $job]);
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   */
+  // EDIT
   public function edit(JobListing $job)
   {
+    if (Auth::guest()) {
+      return redirect('/');
+    }
+
+    if ($job->employer->user->is(Auth::user())) {
+      //
+    }
+
     return view('job.edit', ['job' => $job]);
   }
 
-  /**
-   * Update the specified resource in storage.
-   */
+  // UPDATE
   public function update(Request $request, JobListing $job)
   {
     $request->validate([
@@ -80,9 +76,7 @@ class JobController extends Controller
     return redirect('/jobs/' . $job->id);
   }
 
-  /**
-   * Remove the specified resource from storage.
-   */
+  // DESTROY
   public function destroy(JobListing $job)
   {
     $job->delete();
