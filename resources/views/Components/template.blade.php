@@ -5,8 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>TEST</title>
+  @vite(['resources/js/app.js'])
+  {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 </head>
 
 <body>
@@ -24,7 +25,8 @@
                 <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
                 <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
                 <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
-                <x-nav-link :active="request()->is('tes')" type="button">Tes</x-nav-link>
+                {{-- <x-nav-link :active="request()->is('tes')" type="button">Tes</x-nav-link> --}}
+                <x-nav-link href="/test">Test</x-nav-link>
 
               </div>
             </div>

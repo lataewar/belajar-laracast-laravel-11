@@ -13,7 +13,7 @@
           {{ $item->employer->name }}
         </div>
         <div>
-          <strong>{{ $item['title'] }}:</strong> Pays {{ $item['salary'] }} per year
+          <strong class="text-laracast">{{ $item['title'] }}:</strong> Pays {{ $item['salary'] }} per year
         </div>
       </a>
     @endforeach

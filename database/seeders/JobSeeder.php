@@ -13,6 +13,6 @@ class JobSeeder extends Seeder
    */
   public function run(): void
   {
-    JobListing::factory(200)->create();
+    JobListing::factory(10)->create();
   }
 }
